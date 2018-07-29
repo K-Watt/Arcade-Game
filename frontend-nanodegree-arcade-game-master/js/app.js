@@ -1,7 +1,11 @@
+
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
+
+    //x position
+    //y position
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -14,6 +18,11 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    // If enemy is not passed boundry
+      //move forward
+      //increment x by speed * dt
+    //else
+      // reset pos to start
 };
 
 // Draw the enemy on the screen, required method for game
@@ -44,3 +53,30 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+
+//psuedo
+// Hero class
+  // constructor
+    //properties
+      // x position
+      // y position
+      //sprite image
+
+//methods
+    //update position
+            //check for collision here
+                //did player x and y collide with enemy?
+            //check for win here
+              //did player x and y reach final tile?
+    // render
+        //draw player sprite on current x and y coord position
+    // Handle keyboard input
+      // update player's X and Y property according to handleInput
+   // Reset Hero
+     // set x & Y to starting x and Y
+
+//New hero object
+
+//Init all enemies Array
+// for each enemy creat and push new enemy objject into above array 
