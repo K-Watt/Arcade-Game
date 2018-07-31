@@ -40,7 +40,11 @@ Enemy.prototype.render = function() {
 // Place the player object in a variable called player
 
 
-
+const Hero = function(){
+  this.sprite = 'images/char-horn-girl.png';
+  this.x = 0;
+  this.y = 0;
+}
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
@@ -54,7 +58,13 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-
+const kodi   = new Enemy();
+const mariah = new Enemy();
+const tyler  = new Enemy();
+const woody  = new Enemy();
+const allEnemies = [];
+allEnemies.push(kodi,mariah,tyler,woody);
+const player = new Hero();
 //psuedo
 // Hero class
   // constructor
@@ -79,4 +89,4 @@ document.addEventListener('keyup', function(e) {
 //New hero object
 
 //Init all enemies Array
-// for each enemy creat and push new enemy objject into above array 
+// for each enemy creat and push new enemy objject into above array
