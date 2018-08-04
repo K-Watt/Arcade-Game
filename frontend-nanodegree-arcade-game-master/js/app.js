@@ -1,13 +1,13 @@
 
 // Enemies our player must avoid
-const Enemy = function(y) {
+const Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     //x position starts off screen to show enemies gradually comming onto the borad
-    this.x = 50;
+    this.x = -80;
     //y position this position is compared to Hero position for collision
-    this.y = 50;
+    this.y = 0;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -20,6 +20,11 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    //this.x = this.x * dt;
+    this.x = this.x + this.dt;
+    if (this.x > 500){
+      this.x = -110;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -32,8 +37,8 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 const Hero = function(){
   this.sprite = 'images/char-horn-girl.png';
-  this.x = 150;
-  this.y = 200;
+  this.x = 200;
+  this.y = 400;
 };
 
 Hero.prototype.update = function(dt){
@@ -50,12 +55,37 @@ Hero.prototype.handleInput = function(){
 // Place the player object in a variable called player
 
 //these are all of the enemies
-const kodi   = new Enemy();
-const mariah = new Enemy();
-const tyler  = new Enemy();
-const woody  = new Enemy();
+const kodi       = new Enemy();
+const mariah     = new Enemy();
+const tyler      = new Enemy();
+const woody      = new Enemy();
+const atlas      = new Enemy();
+const pete       = new Enemy();
 const allEnemies = [];
-allEnemies.push(kodi,mariah,tyler,woody);
+allEnemies.push(kodi,mariah,tyler,woody,atlas, pete); //push all enemies to the allEnemies array
+
+//this will put the enemy in a 'lane' on the Y axis
+kodi.y   = 60;
+pete.y   = 60;
+mariah.y = 145;
+tyler.y  = 225;
+woody.y  = 225;
+atlas.y  = 145;
+//set the x value of certain enemies for multiple enemies in one 'lane';
+woody.x  = -200; // put woody behind tyler
+pete.x   = -215; //pete behind kodi
+atlas.x  = -245; //atlas behind mariah
+
+//next we set the speed of the enemies for more variation
+kodi.dt   = 2;
+pete.dt   = 1.85;
+mariah.dt = 1.75;
+atlas.dt  = 1.50;
+tyler.dt  = 3;
+woody.dt  = 2.5;
+
+
+
 
 //the player
 const player = new Hero();
