@@ -46,7 +46,22 @@ Hero.prototype.update = function(dt){
 Hero.prototype.render = function(){
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-Hero.prototype.handleInput = function(){
+Hero.prototype.handleInput = function(e){
+  //for reff handleInput function starts on line 100 atm;
+  switch(e) {
+    case 'left'                        :
+      this.x = this.x > 0 ? this.x - 100 : this.x;
+      break;
+    case 'up'                          :
+      this.y = this.y > 0 ? this.y - 90 : this.y;
+      break;
+    case 'right'                       :
+      this.x = this.x < 400 ? this.x + 100 : this.x;
+      break;
+    case 'down'                        :
+      this.y = this.y < 400 ? this.y + 100 : this.y;
+      break;
+    }
 };
 
 
@@ -77,12 +92,12 @@ pete.x   = -215; //pete behind kodi
 atlas.x  = -245; //atlas behind mariah
 
 //next we set the speed of the enemies for more variation
-kodi.dt   = 2;
-pete.dt   = 1.85;
-mariah.dt = 1.75;
-atlas.dt  = 1.50;
-tyler.dt  = 3;
-woody.dt  = 2.5;
+//kodi.dt   = 2;
+//pete.dt   = 1.85;
+//mariah.dt = 1.75;
+//atlas.dt  = 1.50;
+//tyler.dt  = 3;
+//woody.dt  = 2.5;
 
 
 
