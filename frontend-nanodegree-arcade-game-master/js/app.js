@@ -6,7 +6,7 @@ const Enemy = function() {
 
     //x position starts off screen to show enemies gradually comming onto the borad
     this.x = -80;
-    //y position this position is compared to Hero position for collision
+    //y position this position is compared to hero position for collision
     this.y = 0;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -25,6 +25,15 @@ Enemy.prototype.update = function(dt) {
     if (this.x > 500){
       this.x = -110;
     }
+    //collision testing
+
+    for (i = 0; i <= 100; i++){
+      if((this.x === hero.x) &&(this.y === hero.y)){
+        hero.startX;
+        hero.startY;
+      }
+    }
+  // console.log(this.x,this.y);
 };
 
 // Draw the enemy on the screen, required method for game
@@ -35,7 +44,7 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-const Hero = function(){
+const hero = function(){
   this.sprite = 'images/char-horn-girl.png';
   this.step = 101;
   this.jump = 83;
@@ -45,12 +54,12 @@ const Hero = function(){
   this.y = this.startY;
 };
 
-Hero.prototype.update = function(dt){
+hero.prototype.update = function(dt){
 };
-Hero.prototype.render = function(){
+hero.prototype.render = function(){
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-Hero.prototype.handleInput = function(e){
+hero.prototype.handleInput = function(e){
   //for reff handleInput function starts on line 100 atm;
   //the switch is also configured to keep the player from going off screen.
   switch(e) {
@@ -64,7 +73,7 @@ Hero.prototype.handleInput = function(e){
       this.x = this.x < 400 ? this.x += this.step: this.x;
       break;
     case 'down'                                  :
-      this.y = this.y < 400 ? this.y += this.jump: this.y;
+      this.y = this.y < this.startY ? this.y += this.jump: this.y;
       break;
     }
     console.log(player); // used to check player position for collison testing.
@@ -85,28 +94,29 @@ water : 202, -20;
 
 //these are all of the enemies
 const kodi       = new Enemy();
-const mariah     = new Enemy();
-const tyler      = new Enemy();
-const woody      = new Enemy();
-const atlas      = new Enemy();
-const pete       = new Enemy();
+//const mariah     = new Enemy();
+//const tyler      = new Enemy();
+//const woody      = new Enemy();
+//const atlas      = new Enemy();
+//const pete       = new Enemy();
 const allEnemies = [];
-allEnemies.push(kodi,mariah,tyler,woody,atlas, pete); //push all enemies to the allEnemies array
+allEnemies.push(kodi/*mariah,tyler,woody,atlas, pete*/); //push all enemies to the allEnemies array
 
 //this will put the enemy in a 'lane' on the Y axis
 kodi.y   = 60;
-pete.y   = 60;
-mariah.y = 145;
-tyler.y  = 225;
-woody.y  = 225;
-atlas.y  = 145;
-//set the x value of certain enemies for multiple enemies in one 'lane';
-woody.x  = -200; // put woody behind tyler
-pete.x   = -215; //pete behind kodi
-atlas.x  = -245; //atlas behind mariah
+//pete.y   = 60;
+//mariah.y = 145;
+//tyler.y  = 225;
+//woody.y  = 225;
+//atlas.y  = 145;
+////set the x value of certain enemies for multiple enemies in one 'lane';
+//woody.x  = -200; // put woody behind tyler
+//pete.x   = -215; //pete behind kodi
+//atlas.x  = -245; //atlas behind mariah
 
 //next we set the speed of the enemies for more variation
-//kodi.dt   = 2;
+//note: how can we make these speeds random?
+kodi.dt   = 2;
 //pete.dt   = 1.85;
 //mariah.dt = 1.75;
 //atlas.dt  = 1.50;
@@ -114,10 +124,8 @@ atlas.x  = -245; //atlas behind mariah
 //woody.dt  = 2.5;
 
 
-
-
 //the player
-const player = new Hero();
+const player = new hero();
 
 
 // This listens for key presses and sends the keys to your
@@ -132,8 +140,10 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+
 //psuedo
-// Hero class
+// hero class
   // constructor
     //properties
       // x position
@@ -150,7 +160,7 @@ document.addEventListener('keyup', function(e) {
         //draw player sprite on current x and y coord position
     // Handle keyboard input
       // update player's X and Y property according to handleInput
-   // Reset Hero
+   // Reset hero
      // set x & Y to starting x and Y
 
 //New hero object
