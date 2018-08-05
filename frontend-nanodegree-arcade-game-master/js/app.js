@@ -37,8 +37,12 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 const Hero = function(){
   this.sprite = 'images/char-horn-girl.png';
-  this.x = 200;
-  this.y = 400;
+  this.step = 101;
+  this.jump = 83;
+  this.startX = this.step * 2;
+  this.startY = (this.jump * 4) + 63 ;
+  this.x = this.startX;
+  this.y = this.startY;
 };
 
 Hero.prototype.update = function(dt){
@@ -48,22 +52,32 @@ Hero.prototype.render = function(){
 };
 Hero.prototype.handleInput = function(e){
   //for reff handleInput function starts on line 100 atm;
+  //the switch is also configured to keep the player from going off screen.
   switch(e) {
-    case 'left'                        :
-      this.x = this.x > 0 ? this.x - 100 : this.x;
+    case 'left'                                  :
+      this.x = this.x > 0 ? this.x -= this.step  : this.x;
       break;
-    case 'up'                          :
-      this.y = this.y > 0 ? this.y - 90 : this.y;
+    case 'up'                                    :
+      this.y = this.y > 0 ? this.y -= this.jump  : this.y; //replace 0 with this.jump to block player from entering water. (optional)
       break;
-    case 'right'                       :
-      this.x = this.x < 400 ? this.x + 100 : this.x;
+    case 'right'                                 :
+      this.x = this.x < 400 ? this.x += this.step: this.x;
       break;
-    case 'down'                        :
-      this.y = this.y < 400 ? this.y + 100 : this.y;
+    case 'down'                                  :
+      this.y = this.y < 400 ? this.y += this.jump: this.y;
       break;
     }
+    console.log(player); // used to check player position for collison testing.
 };
-
+/*
+the following are the x and y values of the player after each move(only going up):
+starting position x = 202 y = 395;
+1 up: 202, 312;
+1st lane: 202, 229;
+2nd lane: 202, 146;
+3rd lane: 202, 63;
+water : 202, -20;
+*/
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -104,9 +118,6 @@ atlas.x  = -245; //atlas behind mariah
 
 //the player
 const player = new Hero();
-
-
-
 
 
 // This listens for key presses and sends the keys to your
