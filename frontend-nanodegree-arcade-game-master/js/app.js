@@ -5,7 +5,7 @@ const Enemy = function() {
     // we've provided one for you to get started
 
     //x position starts off screen to show enemies gradually comming onto the borad
-    this.x = -80;
+    this.x = -101;
     //y position this position is compared to hero position for collision
     this.y = 0;
     // The image/sprite for our enemies, this uses
@@ -26,9 +26,17 @@ Enemy.prototype.update = function(dt) {
       this.x = -110;
     }
     //collision testing
-      let enemyBumper = this.x + 40;
-    for (i = 0; i <= 100; i++){
-      if((enemyBumper === player.x) && (this.y === player.y)){
+      let enemyFrontBumper  = this.x + 28;
+      let enemyRearBumper   = this.x -28;
+      let enemyMiddleBumper = this.x;
+    for (i = 0; i <= 32; i++){
+      if((enemyFrontBumper === player.x) && (this.y === player.y)){
+        player.x = 202;
+        player.y = 395;
+      } else if((enemyMiddleBumper === player.x) && (this.y === player.y)){
+        player.x = 202;
+        player.y = 395;
+      } else if((enemyRearBumper === player.x) && (this.y === player.y)){
         player.x = 202;
         player.y = 395;
       }
@@ -98,14 +106,14 @@ const kodi       = new Enemy();
 //const tyler      = new Enemy();
 //const woody      = new Enemy();
 //const atlas      = new Enemy();
-const pete       = new Enemy();
+//const pete       = new Enemy();
 const allEnemies = [];
-allEnemies.push(kodi, pete); //push all enemies to the allEnemies array
+allEnemies.push(kodi); //push all enemies to the allEnemies array
 
 //this will put the enemy in a 'lane' on the Y axis
 kodi.y   = 63;
 //kodi.x = 202;
-pete.y   = 63;
+//pete.y   = 63;
 //mariah.y = 146;
 //tyler.y  = 229;
 //woody.y  = 229;
@@ -118,7 +126,7 @@ pete.y   = 63;
 //next we set the speed of the enemies for more variation
 //note: how can we make these speeds random?
 kodi.dt   = 2;
-pete.dt   = 1;
+//pete.dt   = 1;
 //mariah.dt = 1.75;
 //atlas.dt  = 1.50;
 //tyler.dt  = 3;
