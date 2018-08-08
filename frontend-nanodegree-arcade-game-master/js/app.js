@@ -26,10 +26,21 @@ Enemy.prototype.update = function(dt) {
       this.x = -110;
     }
     //collision testing
-      let enemyFrontBumper  = this.x + 28;
-      let enemyRearBumper   = this.x -28;
+
+      let enemyFrontBumper  = this.x + 38;
+      let enemyRearBumper   = this.x -42;
       let enemyMiddleBumper = this.x;
-    for (i = 0; i <= 32; i++){
+      let enemyY = this.y;
+      check();
+      function check(){
+        if((enemyFrontBumper>= player.x)&&(player.x >= enemyRearBumper) &&(player.y === enemyY)){
+          player.x = 202;
+          player.y = 395;
+          //console.log('bumper working');
+        }
+      }
+
+    /*for (i = 0; i <= 32; i++){
       if((enemyFrontBumper === player.x) && (this.y === player.y)){
         player.x = 202;
         player.y = 395;
@@ -40,8 +51,8 @@ Enemy.prototype.update = function(dt) {
         player.x = 202;
         player.y = 395;
       }
-    }
-  //console.log(this.x,this.y);
+    }*/
+  //console.log(this.y);
 };
 
 // Draw the enemy on the screen, required method for game
@@ -102,35 +113,35 @@ water : 202, -20;
 
 //these are all of the enemies
 const kodi       = new Enemy();
-//const mariah     = new Enemy();
-//const tyler      = new Enemy();
-//const woody      = new Enemy();
-//const atlas      = new Enemy();
-//const pete       = new Enemy();
+const mariah     = new Enemy();
+const tyler      = new Enemy();
+const woody      = new Enemy();
+const atlas      = new Enemy();
+const pete       = new Enemy();
 const allEnemies = [];
-allEnemies.push(kodi); //push all enemies to the allEnemies array
+allEnemies.push(kodi,mariah,tyler,woody,atlas,pete); //push all enemies to the allEnemies array
 
 //this will put the enemy in a 'lane' on the Y axis
 kodi.y   = 63;
 //kodi.x = 202;
-//pete.y   = 63;
-//mariah.y = 146;
-//tyler.y  = 229;
-//woody.y  = 229;
-//atlas.y  = 146;
-////set the x value of certain enemies for multiple enemies in one 'lane';
-//woody.x  = -200; // put woody behind tyler
-//pete.x   = -215; //pete behind kodi
-//atlas.x  = -245; //atlas behind mariah
+pete.y   = 63;
+mariah.y = 146;
+tyler.y  = 229;
+woody.y  = 229;
+atlas.y  = 146;
+//set the x value of certain enemies for multiple enemies in one 'lane';
+woody.x  = -200; // put woody behind tyler
+pete.x   = -215; //pete behind kodi
+atlas.x  = -245; //atlas behind mariah
 
 //next we set the speed of the enemies for more variation
 //note: how can we make these speeds random?
-kodi.dt   = 2;
-//pete.dt   = 1;
-//mariah.dt = 1.75;
-//atlas.dt  = 1.50;
-//tyler.dt  = 3;
-//woody.dt  = 2.5;
+kodi.dt   = 3;
+pete.dt   = 1;
+mariah.dt = 1.75;
+atlas.dt  = 1.50;
+tyler.dt  = 3;
+woody.dt  = 2.5;
 
 
 //the player
