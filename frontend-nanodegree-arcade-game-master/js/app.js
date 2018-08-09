@@ -31,28 +31,27 @@ Enemy.prototype.update = function(dt) {
       let enemyRearBumper   = this.x -42;
       let enemyMiddleBumper = this.x;
       let enemyY = this.y;
+      // this creates a 'no go' zone for the player, prior to this the player
+      //could jump ontop of an enemy after the collision point was passed, this
+      //makes an imaginary hit box keeping the player from going on the enemy period
       check();
       function check(){
         if((enemyFrontBumper>= player.x)&&(player.x >= enemyRearBumper) &&(player.y === enemyY)){
           player.x = 202;
           player.y = 395;
-          //console.log('bumper working');
+
         }
       }
-
-    /*for (i = 0; i <= 32; i++){
-      if((enemyFrontBumper === player.x) && (this.y === player.y)){
-        player.x = 202;
-        player.y = 395;
-      } else if((enemyMiddleBumper === player.x) && (this.y === player.y)){
-        player.x = 202;
-        player.y = 395;
-      } else if((enemyRearBumper === player.x) && (this.y === player.y)){
-        player.x = 202;
-        player.y = 395;
+      playerWin();
+      function playerWin(){
+        if(player.y === -20){
+          { setTimeout(function() {
+              player.x = 202;
+              player.y = 395;
+            }, 1000);
+          }
+        }
       }
-    }*/
-  //console.log(this.y);
 };
 
 // Draw the enemy on the screen, required method for game
@@ -135,12 +134,12 @@ pete.x   = -215; //pete behind kodi
 atlas.x  = -245; //atlas behind mariah
 
 //next we set the speed of the enemies for more variation
-//note: how can we make these speeds random?
+//note: how can we make these speeds random? Along with number of enemies?
 kodi.dt   = 3;
 pete.dt   = 1;
 mariah.dt = 1.75;
 atlas.dt  = 1.50;
-tyler.dt  = 3;
+//tyler.dt  = 3;
 woody.dt  = 2.5;
 
 
@@ -160,30 +159,3 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
-
-
-//psuedo
-// hero class
-  // constructor
-    //properties
-      // x position
-      // y position
-      //sprite image
-
-//methods
-    //update position
-            //check for collision here
-                //did player x and y collide with enemy?
-            //check for win here
-              //did player x and y reach final tile?
-    // render
-        //draw player sprite on current x and y coord position
-    // Handle keyboard input
-      // update player's X and Y property according to handleInput
-   // Reset hero
-     // set x & Y to starting x and Y
-
-//New hero object
-
-//Init all enemies Array
-// for each enemy creat and push new enemy objject into above array

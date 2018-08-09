@@ -1,3 +1,8 @@
 body {
     text-align: center;
 }
+.instructions{
+  position: absolute;
+   left: 100px;
+   top: 580px;
+}
